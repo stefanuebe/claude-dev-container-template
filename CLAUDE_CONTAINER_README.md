@@ -29,6 +29,13 @@ Regarding the specific files and what they are used for, feel free to google or 
 ## How to use
 You can either use the devcontainer in an IDE, that supports them (like VSCode) or run it in the shell/terminal. 
 
+### First time setup
+When you open the shell the first time for a new project, Claude will ask you about your login. When it shows an URL to open,
+copy and paste that URL instead of clicking it, as it may not work correctly otherwise. The resulting passkey must then be copied
+back from the browser into the shell. 
+
+Subsequent usages of the shell in this project will then not require another login.
+
 ### Shell shortcuts
 Here are some useful shortcuts, that can be added to allow easier setup and access:
 
