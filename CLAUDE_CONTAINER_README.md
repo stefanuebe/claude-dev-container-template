@@ -76,3 +76,13 @@ claude-stop() {
 }
 
 ```
+
+## Extensions
+### Docker in Docker
+If you need docker inside your devcontainer, e.g. for testcontainers, add this to toplevel elements in the `devcontainer.json`:
+
+```json
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+```

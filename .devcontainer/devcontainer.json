@@ -10,6 +10,7 @@
     }
   },
   "runArgs": [
+    "--privileged",
     "--shm-size=8g",
     "--init"
   ],

@@ -26,7 +26,20 @@
       "Bash(npm test)",
       "Bash(npm test:*)",
       "mcp__playwright__browser_navigate",
-      "mcp__playwright__browser_install"
+      "mcp__playwright__browser_install",
+      "Bash(./mvnw test:*)",
+      "Bash(./mvnw spotless:apply:*)",
+      "Bash(./mvnw compile:*)",
+      "Bash(./mvnw verify:*)",
+      "Bash(./mvnw failsafe:integration-test:*)",
+      "Bash(./mvnw clean package:*)",
+      "Bash(./mvnw test-compile:*)",
+      "Bash(docker --version:*)",
+      "Bash(docker info:*)",
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "Bash(tee:*)",
+      "WebFetch(domain:vaadin.com)"
     ]
   },
   "enabledMcpjsonServers": [
