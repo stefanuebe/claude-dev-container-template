@@ -2,6 +2,13 @@ Simple setup to use Claude Code on your local machine in a devcontainer.
 
 Inspired by Claude Code's original devcontainer setup. Most important change is, that the firewall is not active and claude has priviliged rights inside the container.
 
+_Note: You do not find a normal README.md here, but this file instead. since this repo ist intended as a template for other projects. And we do
+not want to pollute potential other READMEs._
+
+## How to use
+You can either use the devcontainer in an IDE, that supports them (like VSCode) or run it in the shell/terminal. 
+
+### Shell shortcuts
 Here are some useful shortcuts, that can be added to allow easier setup and access:
 
 ```shell
