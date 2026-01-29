@@ -77,6 +77,11 @@ claude-stop() {
 
 ```
 
+### Let Claude access screenshots
+In theory, you can paste images from the clipboard into the Claude Code shell to let it analyze them. However, that does not work reliably with devcontainers (sometimes it works, but often not).
+To make screenshot sharing easier with CC, there is a readonly hosting for a sharing folder, which is setup by the devcontainer.json:
+It binds your host's folder `~/.claude_screenshots` to the container's `~/screenshots`.
+
 ## Extensions
 ### Docker in Docker
 If you need docker inside your devcontainer, e.g. for testcontainers, add this to toplevel elements in the `devcontainer.json`:
