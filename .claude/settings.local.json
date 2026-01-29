@@ -25,7 +25,8 @@
       "mcp__vaadin__get_component_styling",
       "Bash(npm test)",
       "Bash(npm test:*)",
-      "Bash(git add:*)"
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_install"
     ]
   },
   "enabledMcpjsonServers": [
