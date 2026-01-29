@@ -97,3 +97,6 @@ If you need docker inside your devcontainer, e.g. for testcontainers, add this t
 Sometimes it may happen, that `claude-stop` and a rebuild do not update the used docker container. For instance, when you add new dependencies or commands to the Dockerfile and nothing changes, this is an indicator for an outdated docker container. 
 
 Check your docker container (for instance via shell using `docker container list`), if the CREATED time matches your build time. If it is older, then there might have been some hickup and you have to delete the docker container yourself (e.g. `docker container rm ID`). Then simply start it again and connect with it.
+
+### I cannot paste images
+See **Let Claude access screenshots**
