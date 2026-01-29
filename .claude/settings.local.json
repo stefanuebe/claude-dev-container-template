@@ -45,5 +45,6 @@
   "enabledMcpjsonServers": [
     "vaadin",
     "playwright"
-  ]
+  ],
+  "enableAllProjectMcpServers": true
 }
