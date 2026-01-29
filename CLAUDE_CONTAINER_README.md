@@ -75,6 +75,44 @@ claude-stop() {
     fi
 }
 
+# 6. Clean up - removes docker container and image
+claude-clean() {
+    # 1. Find container (including stopped ones via -a)
+    local container_id=$(docker ps -a -q --filter "label=devcontainer.local_folder=$PWD")
+
+    if [ -z "$container_id" ]; then
+        echo "⚠️  No container (running or stopped) found for this folder."
+        return
+    fi
+
+    # 2. Identify the associated image
+    # We get the image ID directly from the container metadata
+    local image_id=$(docker inspect --format='{{.Image}}' $container_id)
+
+    # 3. Security prompt
+    echo "🚨 WARNING: Cleanup for current folder"
+    echo "   - Container ID: $container_id"
+    echo "   - Image ID:     $image_id"
+    echo ""
+    read -p "Are you sure you want to delete everything? (y/N): " confirm
+
+    # Check for 'y' or 'Y'
+    if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+        echo "❌ Aborted."
+        return
+    fi
+
+    # 4. Perform deletion
+    echo "🗑️  Removing container..."
+    docker rm -f $container_id
+
+    echo "🗑️  Removing image..."
+    # We use '|| true' so the script doesn't fail if the image is used by other containers
+    docker rmi $image_id || echo "⚠️  Could not remove image (it might be in use by another project)."
+
+    echo "✅ Clean up complete."
+}
+
 ```
 
 ### Let Claude access screenshots
