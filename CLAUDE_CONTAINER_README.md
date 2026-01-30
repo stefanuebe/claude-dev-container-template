@@ -115,10 +115,10 @@ claude-clean() {
 
 ```
 
-### Let Claude access screenshots
+### Let Claude access screenshots and other data
 In theory, you can paste images from the clipboard into the Claude Code shell to let it analyze them. However, that does not work reliably with devcontainers (sometimes it works, but often not).
 To make screenshot sharing easier with CC, there is a readonly hosting for a sharing folder, which is setup by the devcontainer.json:
-It binds your host's folder `~/.claude_screenshots` to the container's `~/screenshots`.
+It binds your host's folder `~/.claude_transfer` to the container's `~/transfer`.
 
 ## Extensions
 ### Docker in Docker
@@ -137,4 +137,4 @@ Sometimes it may happen, that `claude-stop` and a rebuild do not update the used
 Check your docker container (for instance via shell using `docker container list`), if the CREATED time matches your build time. If it is older, then there might have been some hickup and you have to delete the docker container yourself (e.g. `docker container rm ID`). Then simply start it again and connect with it.
 
 ### I cannot paste images
-See **Let Claude access screenshots**
+See **Let Claude access screenshots and other data**
