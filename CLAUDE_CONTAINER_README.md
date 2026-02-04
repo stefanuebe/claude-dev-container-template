@@ -120,6 +120,13 @@ In theory, you can paste images from the clipboard into the Claude Code shell to
 To make screenshot sharing easier with CC, there is a readonly hosting for a sharing folder, which is setup by the devcontainer.json:
 It binds your host's folder `~/.claude_transfer` to the container's `~/transfer`.
 
+### Let Claude start and stop a test server
+When Claude needs to test something "locally", it normally starts its own server - and this with a big variation of shell commands, that you 
+always have to confirm. This can be very annoying, since it requires you to stare at the monitor all the time. 
+
+To overcome this issue, there are three scripts "start-server.sh", "stop-server.sh" and "print-server-logs.sh" on which Claude has access.
+I recommend you to tell your local instance to use these (and write it to the claude.md).
+
 ## Extensions
 ### Docker in Docker
 If you need docker inside your devcontainer, e.g. for testcontainers, add this to toplevel elements in the `devcontainer.json`:

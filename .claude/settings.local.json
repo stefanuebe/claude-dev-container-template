@@ -39,7 +39,10 @@
       "Bash(tree:*)",
       "Bash(wc:*)",
       "Bash(tee:*)",
-      "WebFetch(domain:vaadin.com)"
+      "WebFetch(domain:vaadin.com)",
+      "Bash(./server-start.sh:*)",
+      "Bash(./print-server-logs.sh:*)",
+      "Bash(./server-stop.sh:*)"
     ]
   },
   "enabledMcpjsonServers": [
