@@ -2,13 +2,10 @@ Simple setup to use Claude Code on your local machine in a devcontainer.
 
 Inspired by [Claude Code's original devcontainer setup](https://github.com/anthropics/claude-code/tree/main/.devcontainer). Most important change is, that the firewall is not active and claude has priviliged rights inside the container.
 
-_Note: You do not find a normal README.md here, but this file instead. since this repo ist intended as a template for other projects. And we do
-not want to override potential other READMEs._
-
 ## Disclaimer / Warning
 Before you do anything with the files provided here, be aware, that devcontainers may have unknown (or known) bugs, that may allow
-Claude to break out and do unwanted things with your host machine. Also be aware, that the given setup has no firewall rules enabled 
-and Claude can use sudo inside the devcontainer.
+Claude to break out and do unwanted things with your host machine. Also be aware, that the given setup has no firewall rules enabled, so
+Claude can access the internet and it has sudo rights inside the devcontainer.
 
 **Everything you do you do on your own risk, I do not give any guarantees
 and do not take any responsibility for what you do with this template / repo content.** 
