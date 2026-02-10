@@ -42,7 +42,7 @@
       "WebFetch(domain:vaadin.com)",
       "Bash(./server-start.sh:*)",
       "Bash(./print-server-logs.sh:*)",
-      "Bash(./server-stop.sh:*)",
+      "Bash(./server-stop.sh:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
