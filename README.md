@@ -1,4 +1,7 @@
-Simple setup to use Claude Code on your local machine in a devcontainer. 
+Simple setup to use Claude Code on your local machine in a devcontainer. The primary target for this template
+are projects written in Vaadin with Spring Boot, but it should also work for other types of projects. 
+
+If you are not building a Vaadin project, you may need to modify the agents.
 
 Inspired by [Claude Code's original devcontainer setup](https://github.com/anthropics/claude-code/tree/main/.devcontainer). Most important change is, that the firewall is not active and claude has priviliged rights inside the container.
 
@@ -123,6 +126,30 @@ always have to confirm. This can be very annoying, since it requires you to star
 
 To overcome this issue, there are three scripts "start-server.sh", "stop-server.sh" and "print-server-logs.sh" on which Claude has access.
 I recommend you to tell your local instance to use these (and write it to the claude.md).
+
+## Custom Agents
+
+This template ships with 15 custom agents in `.claude/agents/` that extend Claude Code with specialized capabilities. When Claude receives a non-trivial task, it delegates to the **agents-manager**, which picks the best-fitting agent automatically.
+
+| Agent | Purpose |
+|-------|---------|
+| **agents-manager** | Primary task router — delegates tasks to the right agent. Also discovers the tech stack and injects project-specific patterns into all other agents. |
+| **architecture-guard** | Checks structural compliance, cross-module import violations, and package placement rules. |
+| **code-reviewer** | Fast, focused code review of a diff — correctness, style, security. No builds or tests. |
+| **dependency-auditor** | Audits dependencies for known CVEs, outdated versions, and license issues. |
+| **devcontainer-auditor** | Audits Dockerfiles, devcontainer.json, compose files, and scripts for security and efficiency. |
+| **docs-engineer** | Creates, updates, reviews, and restructures documentation (API docs, READMEs, architecture guides, CLAUDE.md). |
+| **fullstack-developer** | End-to-end feature implementation spanning JPA entities, services, REST APIs, and Vaadin UI. |
+| **housekeeper** | Cleans up servers, Docker containers, temp files, screenshots, and Chromium processes after development activity. |
+| **migration-auditor** | Audits database migrations for destructive operations, naming issues, and backward compatibility. |
+| **performance-auditor** | Static analysis for N+1 queries, memory leaks, large payloads, and inefficient rendering. |
+| **qa-tester** | Comprehensive QA: code review + build + tests + responsive design checks + test gap analysis. |
+| **requirements-reviewer** | Reviews feature requirements and implementation plans for completeness and feasibility before coding starts. |
+| **security-reviewer** | Deep security review covering auth flows, session management, injection vectors, access control, and secrets handling. |
+| **ui-designer** | Reviews UI design decisions for visual consistency, accessibility (WCAG 2.1 AA), responsive layouts, and design system adherence. |
+| **ui-explorer** | Live browser-based visual testing via Playwright at mobile (375x812) and desktop (1280x800) viewports. |
+
+> **Note:** `code-reviewer` and `qa-tester` are mutually exclusive — don't run both on the same changes. `qa-tester` includes everything `code-reviewer` does, plus builds, tests, and responsive checks.
 
 ## Extensions
 ### Docker in Docker

@@ -38,7 +38,7 @@ Only skip delegation when the task is clearly outside all agents' scope (e.g. a 
 
 ## Custom Agents
 
-Fourteen custom agents are defined in `.claude/agents/`:
+Fifteen custom agents are defined in `.claude/agents/`:
 
 | Agent | Purpose | When to use |
 |-------|---------|-------------|
@@ -47,8 +47,9 @@ Fourteen custom agents are defined in `.claude/agents/`:
 | **code-reviewer** | Fast code review of a diff (no builds/tests) | DURING development for quick feedback |
 | **dependency-auditor** | Audits dependencies for CVEs, outdated versions, license issues | Periodically or before releases |
 | **devcontainer-auditor** | Audits devcontainer setup: Dockerfiles, devcontainer.json, compose, infrastructure | When container setup changes |
+| **docs-engineer** | Creates, updates, reviews, and restructures documentation (API docs, READMEs, architecture guides, CLAUDE.md) | When documentation needs to be created, updated, or audited for gaps |
 | **fullstack-developer** | End-to-end feature development spanning backend and frontend (entities, services, APIs, UI) | When implementing complete features across all layers |
-| **housekeeper** | Keeps CLAUDE.md accurate, cleans up temp files and processes | Before committing or after larger changes |
+| **housekeeper** | Cleans up servers, Docker containers, temp files, screenshots, and Chromium processes | Run automatically after tests, UI exploration, server starts, or larger changes |
 | **migration-auditor** | Audits database migrations for safety | Before committing new migrations |
 | **performance-auditor** | Static analysis for N+1 queries, memory leaks, rendering issues | When performance is a concern |
 | **qa-tester** | Full QA: code review + build + tests + responsive checks | BEFORE committing (comprehensive) |
