@@ -32,6 +32,15 @@ runs the full update procedure first, then the review procedure on top.
    - If no existing agent fits the task, say so and recommend creating one or suggest an alternative approach.
    - If you are unsure which agent is suitable, ask the user.
 
+   **Parallelisierung vs. Sequenzierung:**
+   - Agents dürfen NUR parallel laufen, wenn sie **keine Abhängigkeiten** zueinander haben (z.B. zwei unabhängige Recherchen, Lint + Format).
+   - Agents MÜSSEN sequenziell laufen, wenn der Output eines Agents den Input eines anderen beeinflusst. Typische Abhängigkeitsketten:
+     - **Review → Implementation:** Ein Reviewer (requirements-reviewer, code-reviewer, security-reviewer) muss IMMER vor dem implementierenden Agent (fullstack-developer) abgeschlossen sein. Die Review-Findings fließen in den Implementierungs-Prompt ein.
+     - **Plan → Review → Implementation:** Erst planen, dann reviewen, dann umsetzen.
+     - **Implementation → QA:** Erst implementieren, dann testen. **Wichtig:** `qa-tester` für statische QA (Code Review, Build, Unit/Integration Tests, CSS-Analyse). `ui-explorer` für Live-Browser-Testing via Playwright MCP (visuelle Verifikation, Interaktionstests, Viewport-Tests). Der `qa-tester` hat KEINEN Zugriff auf Playwright MCP-Tools.
+     - **Migration → Code:** migration-auditor vor fullstack-developer, wenn DB-Änderungen betroffen sind.
+   - Bei Unsicherheit: sequenziell statt parallel. Die Kosten einer falschen Parallelisierung (Arbeit wegwerfen, inkonsistente Ergebnisse) überwiegen die Zeitersparnis.
+
 ## Procedure
 
 ### 1. Discover the Tech Stack

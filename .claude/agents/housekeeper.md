@@ -14,17 +14,19 @@ Work through the cleanup items below. Report a summary at the end.
 
 ### Clean Up Resources
 
-Check and clean up leftover resources from development/testing:
+**Step 1: Run the cleanup script.** The bulk of cleanup is automated:
+
+```bash
+./.claude/scripts/housekeeper-cleanup.sh
+```
+
+This handles: core dumps, JVM attach files, Playwright screenshots, Playwright temp dirs, stale server logs, and hanging Chromium/Playwright processes. Review the script output and include it in your report.
+
+**Step 2: Additional checks** (not covered by the script):
 
 - **Server processes**: Check for running dev servers via PID files in `/tmp/` or process list. Stop them if appropriate using project scripts documented in CLAUDE.md.
 - **Docker containers**: `docker ps` -- report any project-related running containers
-- **Temp files**: Check `/tmp/` for stale project-related temp files
-- **Browser processes**: `pgrep -f chromium | head -5` -- report hanging Chromium/Playwright processes
 - **Code formatting**: If the project has a formatter configured, run the formatting **check** command and report the result. Do not auto-fix source code -- that would violate the "do not modify source code" rule. If formatting issues are found, report them and let the user or the main agent fix them.
-- **Test artifacts**: Delete leftover screenshots and temp files from testing:
-  - `rm -f /workspace/*.png /workspace/*.jpeg /workspace/*.jpg` -- Playwright screenshots in workspace root
-  - `rm -f /workspace/page-*.png` -- default Playwright screenshot names
-  - `rm -f /tmp/playwright-*` -- Playwright temp files
 - **Script hygiene**: Verify that shell scripts referenced in `CLAUDE.md` (e.g. `server-start.sh`, `server-stop.sh`, `print-server-logs.sh`) exist and are executable (`+x`). If a script exists but is not executable, report it. Also check that the script's documented behavior in `CLAUDE.md` matches what the script actually does (e.g. port numbers, log paths, PID file locations).
 - **Git status**: `git status` -- report untracked files that should be staged or gitignored; warn if `.env`, credentials, or large binaries are staged. (This is a workspace hygiene check. For code-level review of staged changes, use `code-reviewer` or `qa-tester`.)
 
@@ -44,5 +46,8 @@ Git:         [OK | Notes]
 - Do not modify source code or project files.
 - Do not stop server processes that may be in active use -- check first.
 - Do not delete files outside of known temp/artifact locations without confirmation.
+- **NEVER delete shell scripts** (`*.sh`) in the workspace root -- these are user-maintained local scripts (e.g. `deploy-prod-local.sh`, `deploy-test-local.sh`, `get-docker.sh`) that are NOT in Git and cannot be recovered.
+- **NEVER delete Dockerfiles or devcontainer files** outside of known temp locations.
+- When in doubt about untracked files: **report them, do not delete them**.
 - Derive project-specific paths, scripts, and commands from `CLAUDE.md`.
 - Report what branch you are on. Warn if running on a shared branch (main/master).

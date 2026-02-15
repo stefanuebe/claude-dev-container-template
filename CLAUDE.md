@@ -61,6 +61,8 @@ Fifteen custom agents are defined in `.claude/agents/`:
 **Important agent relationships:**
 - `agents-manager` is the **default entry point** for all non-trivial tasks — delegate to it and let it pick the right agent
 - `code-reviewer` and `qa-tester` are mutually exclusive — do not run both on the same changes
+- `qa-tester` and `ui-explorer` recommend running `housekeeper` after completion (via agents-manager)
+- `agents-manager` enforces sequencing rules — e.g. review before implementation, implementation before QA — and only parallelizes truly independent agents
 - `agents-manager` should also be run on first project setup (update mode) to populate project-specific sections in all other agents; supports a "review mode" (when explicitly asked) to propose agent additions/removals
 
 ## Test Server Scripts
@@ -99,6 +101,8 @@ npx playwright test                  # Playwright browser tests
 - `.mcp.json` — MCP server definitions
 - `.claude/settings.local.json` — Pre-approved commands and MCP permissions
 - `.claude/agents/` — Custom agent definitions (see Custom Agents section)
+- `.claude/scripts/` — Automation scripts used by agents (e.g. `housekeeper-cleanup.sh`)
+- `.claude/screenshots/` — Playwright screenshots saved by `ui-explorer` (not committed)
 
 ## Container Mounts
 

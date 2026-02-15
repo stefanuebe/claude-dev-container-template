@@ -150,6 +150,8 @@ This template ships with 15 custom agents in `.claude/agents/` that extend Claud
 | **ui-explorer** | Live browser-based visual testing via Playwright at mobile (375x812) and desktop (1280x800) viewports. |
 
 > **Note:** `code-reviewer` and `qa-tester` are mutually exclusive — don't run both on the same changes. `qa-tester` includes everything `code-reviewer` does, plus builds, tests, and responsive checks.
+>
+> After successful runs, `qa-tester` and `ui-explorer` recommend running `housekeeper` for cleanup. The `agents-manager` enforces sequencing rules (e.g. review before implementation) and only parallelizes truly independent agents.
 
 ## Extensions
 ### Docker in Docker

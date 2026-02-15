@@ -40,7 +40,7 @@ Use `browser_resize` to switch between viewports.
 ### 3. For Each View
 
 1. **Take Accessibility Snapshot** (`browser_snapshot`) -- captures the full component tree
-2. **Take Visual Screenshot** (`browser_take_screenshot`) -- captures the rendered layout
+2. **Take Visual Screenshot** (`browser_take_screenshot`) -- captures the rendered layout. **Always** use the `filename` parameter with path `.claude/screenshots/<descriptive-name>.png` (e.g. `.claude/screenshots/diary-mobile.png`). Never save screenshots to the workspace root.
 3. **Document**:
    - All visible elements with their exact labels/text
    - Layout structure (vertical/horizontal, spacing)
@@ -88,6 +88,23 @@ Issues:
 =============================
 ```
 
+## Server Logs
+
+When you need to check server logs (e.g., to diagnose errors, investigate unexpected behavior, or verify server-side state), use the project's log script:
+
+```bash
+# Show last 500 lines of server logs
+./print-server-logs-claude.sh
+
+# Follow logs live (useful while reproducing issues)
+./print-server-logs-claude.sh -f
+
+# Filter for state-relevant logs
+./print-server-logs-claude.sh -state
+```
+
+Do NOT use `cat`, `tail`, or other generic commands to read server logs. Always use this script as it knows the correct log file location and provides useful filtering options.
+
 ## Important Rules
 
 - You must NOT modify any files -- only analyze and report.
@@ -95,3 +112,4 @@ Issues:
 - Report exact element text/labels for documentation accuracy.
 - Flag any visual inconsistency, overflow, or broken layout.
 - If the server is not running, try to start it using commands from `CLAUDE.md`. If that fails, report the failure and abort the exploration.
+- **After a successful exploration**, recommend in your report that the `agents-manager` should be asked to run the `housekeeper` agent for cleanup (Playwright screenshots, Chromium processes, server processes, temp files, etc.).

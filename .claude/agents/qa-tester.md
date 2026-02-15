@@ -142,3 +142,4 @@ Overall Assessment: [APPROVED | REWORK NEEDED]
 - If everything is fine, say so -- but check thoroughly before saying "OK".
 - You must NOT modify any files -- only analyze and report. Fixes are done by the main agent.
 - Always check responsive/mobile impact for UI changes.
+- **After a successful QA run**, recommend in your report that the `agents-manager` should be asked to run the `housekeeper` agent for cleanup (temp files, server processes, screenshots, etc.).
