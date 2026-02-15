@@ -42,7 +42,10 @@
       "WebFetch(domain:vaadin.com)",
       "Bash(./server-start.sh:*)",
       "Bash(./print-server-logs.sh:*)",
-      "Bash(./server-stop.sh:*)"
+      "Bash(./server-stop.sh:*)",
+      "Bash(git -C /workspace status)",
+      "Bash(./.claude/scripts/housekeeper-cleanup.sh:*)",
+      "Bash(git -C /workspace diff --name-only --cached)"
     ]
   },
   "enableAllProjectMcpServers": true,
